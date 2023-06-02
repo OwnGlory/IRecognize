@@ -1,9 +1,39 @@
 import cv2
-cam = cv2.VideoCapture(0)
-image = cam.read()
-cv2.imshow("img1", image[1])
-cv2.imwrite("img1.png", image[1])
-cv2.waitKey(0)
+# import numpy as np
+
+
+url = "10.16.204.68:8080/video"
+cp = cv2.VideoCapture(url)
+
+while (True):
+    camera, frame = cp.read()
+    if frame is not None:
+        cv2.imshow("Frame", frame)
+        cv2.imwrite("img1.png", camera[1])
+    q = cv2.waitKey(1)
+    if q == ord("q"):
+        break
+cv2.destroyAllWindows()
+
+# cam = cv2.VideoCapture(0)
+# image = cam.read()
+# cv2.imshow("img1", image[1])
+# cv2.imwrite("img1.png", image[1])
+# cv2.waitKey(0)
+# 
+# 
+# sizes = camera.image_sizes()
+# appuifw.app.orientation = 'landscape'
+# canvas = appuifw.Canvas()
+# 
+# 
+# def cam_finder(im):
+#     canvas.blit(im)
+# 
+# 
+# camera.start_finder(cam_finder, size=(320,240))
+# canvas.bind(key_codes.EKeySelect, take_picture)
+# pic.save(filename, quality=75)
 
 # import cv2
 # img = cv2.imread("iris.jpg", cv2.IMREAD_GRAYSCALE)
